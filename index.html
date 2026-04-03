@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>@lessspicy</title>
+
+  <style>
+    body {
+      font-family: "jttgattaeeonangirin", sans-serif;
+      font-weight: 100;
+      background-color: #4d8bff;
+      margin: 0;
+      padding-top: 40px;      /* 위만 */
+    }
+
+    .container {
+     display: flex;            /* 플렉스 레이아웃 활성화 */
+     flex-direction: column;   /* 카드를 위에서 아래로(세로) 쌓음 */
+     align-items: center;      /* 세로로 쌓인 카드들을 가로 중앙으로 정렬 */
+     padding: 20px 0;          /* 위아래에 약간의 여백 (선택 사항) */
+     width: 100%;              /* 컨테이너가 화면 전체 너비를 차지하도록 설정 */
+    }
+
+    .card {
+      background-color: #4d8bff;
+      border-radius: 2px;
+      padding: 25px 20px;
+      cursor: pointer;        /* 마우스 올리면 손가락 커서 */
+      text-decoration: none;  /* 링크 밑줄 제거 */
+      display: block;
+      transition: all 0.3s ease; /* 호버 시 부드럽게 변하도록 */
+      cursor: pointer;
+    }
+
+    .card p {
+      color: rgb(255, 255, 255);
+      font-size: 150px;
+      font-weight: 100;   /* 두께: 기본 400 */
+      letter-spacing: -0.02em;   /* 자간: 양수+, 음수- */
+      line-height: 1.5;   /* 행간: 보통 1.2, 본문은 1.5~1.8 */
+      margin: 0;
+      margin-bottom: px;
+      font-family: "jttgattaeeonangirin", sans-serif;
+      word-break: keep-all;
+      text-align: center;
+    }
+
+    .card.long-title p {
+      line-height: 1.5;   /* 행간: 보통 1.2, 본문은 1.5~1.8 */
+    }
+
+    .card h3 {
+      color: #4d8bff;
+      font-size: 25px;
+      font-weight: 100;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      font-family: "jttgattaeeonangirin", sans-serif;
+      margin: 0;
+      margin-bottom: 0px;
+    }
+
+   .container {
+      gap: 20px;         /* 카드 사이 간격 */
+      margin: 0 auto;
+    }
+
+    .card:hover p {
+    color: rgb(212, 255, 182);
+    }
+
+    .card:active p {
+    color: rgb(255, 203, 252);
+    }
+
+    .card.selected p {
+    color: rgb(255, 203, 252) !important;
+    transition: color 0.4s ease;
+    }
+
+   .mo-only {
+    display: none;
+    }
+
+    /* PC용 줄바꿈은 평소에 작동 */
+    .pc-only {
+    display: inline;
+    } 
+
+    @media (max-width: 600px) {
+  body {
+    padding: 15px; 
+    padding-top: 40px; /* 상단 여백 유지 */
+  }
+  
+  .card {
+    width: 100%; 
+    margin-bottom: 0px; /* 현재 구조에서 컨테이너가 반복되므로 조절 */
+    padding: 10px;      /* 모바일에서 카드 안쪽 여백 살짝 줄임 */
+  }
+
+  .card p {
+    /* ★ 핵심 수정 사항 */
+    font-size: 15vw;
+    white-space: nowrap; /* 기본은 줄바꿈 금지 */
+    word-break: keep-all;
+  }
+
+  .card.selected p {
+    color: rgb(255, 203, 252) !important;
+    transition: color 0.4s ease;
+  }
+
+  .card.long-title p {
+    white-space: normal;    /* 줄바꿈 허용으로 변경 */
+    font-size: 15vw;        /* 두 줄이 되면 너무 커 보일 수 있으니 살짝 줄임 */
+    line-height: 1.2;       /* 행간을 좁혀서 두 줄이 붙어 보이게 조절 */
+    word-break: keep-all;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+  }
+
+  .container {
+    width: 100% !important;
+    gap: 0px;             /* 컨테이너 간 간격 조절 */
+  }
+
+  .card:active {
+    transform: scale(0.97); /* 꾹 눌리는 느낌 (디자이너들이 좋아하는 디테일!) */
+    transition: 0.1s; /* 누를 때는 즉각적으로! */
+  }
+
+  .card:active p {
+    color: rgb(255, 203, 252); /* 글자색 변화 */
+  }
+
+  .pc-only {
+    display: none;
+  }
+
+  /* 모바일 줄바꿈 */
+  .mo-only {
+    display: inline;
+  }
+
+  /* 세 줄일 때 타이포그래피 조절 */
+  .card.long-title p {
+    white-space: normal;
+    font-size: 13vw;
+    line-height: 1.1; /* 세 줄이 쫀득하게 붙도록 */
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="book1.html" class="card">
+      <p>모순</p>
+    </a>
+  </div>
+  <div class="container">
+    <a href="book2.html" class="card">
+      <p>퀸 베이비</p>
+    </a>
+  </div>
+  <div class="container">
+    <a href="book1.html" class="card">
+      <p>랩걸</p>
+    </a>
+  </div>
+    <div class="container">
+    <a href="book1.html" class="card">
+      <p>자발적 고독</p>
+    </a>
+  </div>
+    <div class="container">
+  <a href="book1.html" class="card long-title">
+    <p>
+      색채가 없는
+      <br class="mo-only"> 다자키 쓰쿠루와
+      <br class="pc-only"><br class="mo-only"> 그가 순례를 떠난 해
+    </p>
+    </a>
+  </div>
+
+
+   <script>
+  (function(d) {
+    var config = {
+      kitId: 'eer4nif',
+      scriptTimeout: 3000,
+      async: true
+    },
+    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+  })(document);
+</script>
+<script src="https://use.typekit.net/eer4nif.js" async onload="try{Typekit.load({async:true})}catch(e){}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+
+<script>
+  window.addEventListener('pageshow', function(event) {
+    // 뒤로가기로 이 페이지에 왔을 때, 남아있는 'selected' 클래스를 모두 제거합니다.
+    if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+      document.querySelectorAll('.card').forEach(function(card) {
+        card.classList.remove('selected');
+      });
+    }
+  });
+
+  window.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.card').forEach(function(card) {
+      card.addEventListener('click', function(e) {
+        e.preventDefault(); 
+        
+        const targetUrl = this.getAttribute('href'); 
+        this.classList.add('selected'); 
+        
+        // ★ 시간을 0.15초로 대폭 단축 (눈 깜빡할 사이)
+        setTimeout(function() {
+          window.location.href = targetUrl;
+        }, 150); 
+      });
+    });
+  });
+</script>
+<script>
+  window.onload = function() {
+    var grid = document.querySelector('.container');
+    // 메인은 세로로 쌓이는 구조라 Masonry가 필수는 아니지만, 
+    // 혹시 몰라 에러 방지용으로 기본 레이아웃을 잡아줍니다.
+  };
+</script>
+
+</body>
