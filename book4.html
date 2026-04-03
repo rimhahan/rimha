@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>@lessspicy</title>
+
+  <script>
+  (function(d) {
+    var config = {
+      kitId: 'eer4nif',
+      scriptTimeout: 3000,
+      async: true
+    },
+    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+  })(document);
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: "jttgattaeeonangirin", sans-serif;
+      font-weight: 100;
+      background-color: #4d8bff;
+      margin: 0;
+      padding: 40px;
+      padding-top: 0;
+    }
+
+    h1 {
+      font-size: 120px;
+      text-align: center;
+      color: rgb(255, 203, 252);
+      margin: 0 auto;
+      max-width: 600px;
+      padding-top: 70px; 
+      padding-bottom: 0px; 
+      word-break: keep-all;
+    }
+
+      h2 {
+      font-size: 30px;
+      text-align: center;
+      color: #ffffff;
+      margin: 0 auto;
+      max-width: 600px;
+      padding-bottom: 50px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+      font-size: 60px;        /* 화면이 작으면 글자 크기도 줄여줌 */
+      padding-top: 40px;
+      }
+    }
+    
+    .card {
+    display: block;
+    width: 300px;           /* 너비 고정 */
+    margin-bottom: 20px;    /* ★ 위아래 간격 (중요) */
+    background-color: white;
+    border-radius: 2px;
+    padding: 20px 20px 10px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    text-decoration: none;
+    }
+
+    .card.bold{
+     background-color: rgb(255, 203, 252);
+    }
+
+    .card p {
+      color: #4d8bff;
+      font-size: 30px;
+      font-weight: 100;   /* 두께: 기본 400 */
+      letter-spacing: -0.02em;   /* 자간: 양수+, 음수- */
+      line-height: 1.5;   /* 행간: 보통 1.2, 본문은 1.5~1.8 */
+      margin: 0;
+      margin-bottom: 25px;
+      font-family: "jttgattaeeonangirin", sans-serif;
+      word-break: keep-all;
+    }
+
+    .card h3 {
+      color: #4d8bff;
+      font-size: 15px;
+      font-weight: 100;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      font-family: "jttgattaeeonangirin", sans-serif;
+      margin: 0;
+      margin-bottom: 10px;
+    }
+
+    .container {
+      margin: 0 auto;
+    }
+
+        @media (max-width: 600px) {
+  h1 {
+    font-size: 20vw;      
+  }
+  /* 화면 가로 폭의 약 7% 크기로 유지 */
+  h2 {
+    font-size: 7vw;       
+  }
+  body {
+    padding: 15px; /* 모바일에서 전체 여백 줄임 */
+  }
+  .card {
+    width: 100%; /* 모바일에서는 카드 폭을 화면에 꽉 채움 */
+    margin-bottom: 15px;
+  }
+  .container {
+    width: 100% !important; /* 컨테이너도 꽉 채움 */
+  }
+}
+    
+  </style>
+</head>
+<body>
+   <h1>자발적 고독</h1>
+   <h2>올리비에 르모</h2>
+    <div class="container">
+     <div class="card bold">
+      <p>작업 중...</p>
+       </div>
+   </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+
+    <script>
+      window.onload = function() {
+        var grid = document.querySelector('.container');
+        var msnry = new Masonry(grid, {
+          itemSelector: '.card',
+          columnWidth: 300,
+          gutter: 20,
+          fitWidth: true
+        });
+
+        // 폰트 로딩으로 인한 높이 변화 대응
+        setTimeout(function() { msnry.layout(); }, 300);
+        setTimeout(function() { msnry.layout(); }, 1000); // 조금 더 넉넉하게 1초 추가
+      };
+    </script>
+</body>
+</html>
+
+
+</body>
+</html>
