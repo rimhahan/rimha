@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>@lessspicy - 자발적 고독</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+  <script>
+    (function(d) {
+      var config = { kitId: 'eer4nif', scriptTimeout: 3000, async: true },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+  </script>
+  <style>
+    body { font-family: "jttgattaeeonangirin", sans-serif; font-weight: 100; background-color: #4d8bff; margin: 0; padding: 40px; padding-top: 0; }
+    h1 { font-size: 120px; text-align: center; color: rgb(255, 203, 252); margin: 0 auto; max-width: 600px; padding-top: 70px; word-break: keep-all; }
+    h2 { font-size: 30px; text-align: center; color: #ffffff; margin: 0 auto; max-width: 600px; padding-bottom: 50px; }
+    .container { margin: 0 auto; }
+    .card { display: block; width: 300px; margin-bottom: 20px; background-color: white; border-radius: 2px; padding: 20px 20px 10px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); box-sizing: border-box; text-decoration: none; }
+    .card.bold { background-color: rgb(255, 203, 252); }
+    .card p { color: #4d8bff; font-size: 30px; line-height: 1.5; margin: 0; margin-bottom: 25px; word-break: keep-all; }
+    
+    @media (max-width: 600px) {
+      h1 { font-size: 20vw; padding-top: 40px; }
+      h2 { font-size: 7vw; }
+      body { padding: 15px; }
+      .card { width: 100%; margin-bottom: 15px; }
+      .container { width: 100% !important; }
+    }
+  </style>
+</head>
+<body>
+   <h1>자발적 고독</h1>
+   <h2>올리비에 르모</h2>
+   <div class="container">
+     <div class="card bold">
+       <p>작업 중...</p>
+     </div>
+   </div>
+
+  <script>
+    window.onload = function() {
+      var grid = document.querySelector('.container');
+      var msnry = new Masonry(grid, {
+        itemSelector: '.card',
+        columnWidth: 300,
+        gutter: 20,
+        fitWidth: true
+      });
+      setTimeout(function() { msnry.layout(); }, 300);
+      setTimeout(function() { msnry.layout(); }, 1000);
+    };
+  </script>
+</body>
+</html>
