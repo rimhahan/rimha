@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko" style="background-color: #000000 !important;">
+<head>
+  <title>@lessspicy | Collection</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script>
+    (function(d) {
+      var config = { 
+        kitId: 'eer4nif', 
+        scriptTimeout: 2000, 
+        async: true,
+        active: function() { startApp(); }
+      },
+      h=d.documentElement,t=setTimeout(function(){
+        h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";
+        startApp();
+      },config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+  </script>
+
+<style>
+  html, body {
+    background-color: #4f413c !important;
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    color: white;
+    font-family: "jttgattaeeonangirin", sans-serif;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  body::-webkit-scrollbar { display: none; }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: auto;
+    cursor: pointer;
+    -webkit-font-smoothing: antialiased;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  body.font-active { opacity: 1; }
+
+  .quote-wrapper {
+    text-align: center;
+    max-width: 1200px;
+    width: 90%;
+    margin: auto; 
+    padding: 100px 0;
+    user-select: none;
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* 따옴표 전용 폰트 정의 */
+  @font-face {
+    font-family: 'CustomQuote';
+    src: local('Arial'), local('AppleMyungjo'), local('Batang'); 
+    unicode-range: U+201C, U+201D; 
+    size-adjust: 92%; 
+  }
+
+  /* ★ 추가: 따옴표 위치 강제 조정 스타일 */
+  .custom-q {
+    display: inline-block;
+    font-family: 'CustomQuote', sans-serif;
+    /* 현재 -15px로 설정했습니다. 더 올리고 싶으면 숫자를 -20, -25 식으로 키우세요. */
+    transform: translateY(-10px); 
+    line-height: 0;
+  }
+
+  /* 본문 텍스트 스타일 */
+  #quote-text {
+    font-family: 'CustomQuote', "jttgattaeeonangirin", sans-serif;
+    font-size: 75px; 
+    line-height: 1.4;
+    margin: 0; padding: 0;
+    word-break: keep-all;
+    transition: opacity 0.4s ease-in-out, font-size 0.2s ease, line-height 0.2s ease; 
+    opacity: 0;
+  }
+
+  #quote-text.show { opacity: 1; }
+
+  #quote-source {
+    color: #f97bcb;
+    font-size: 30px;
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+    margin-top: 30px;
+    display: block;
+    transition: opacity 0.4s ease-in-out;
+    opacity: 0;
+  }
+
+  #quote-source.show { opacity: 1; }
+
+  @media (max-width: 600px) {
+    .quote-wrapper { padding: 80px 0; width: 95%; }
+    #quote-text { font-size: 11vw !important; }
+    #quote-source { font-size: 18px; margin-top: 25px; }
+    /* 모바일에서는 높이 조절 값을 조금 줄이는 것이 자연스러울 수 있습니다 */
+    .custom-q { transform: translateY(-1.5vw); }
+  }
+</style>
+</head>
+<body onclick="nextQuote()">
+
+  <div class="quote-wrapper">
+    <div id="quote-text"></div>
+    <div id="quote-source"></div>
+  </div>
+
+  <script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, '', window.location.pathname);
+    }
+
+    const quotes = [
+      { text: "삶은 긴 호흡 더디 가도 뿌리 깊게", source: "박노해, 박노해의 걷는 독서" },
+      { text: "바 르 게 살 자", source: "북가좌2동 바르게살기위원회 일동, 증산역" },
+      { text: "내가 피어나는 곳, 방해하지 마세요.", source: "양귀비, 마포구 월드컵천" },
+      { text: "반려동물은 자기 자신보다 당신을 더 사랑하는 이 세상의 유일한 생명체일 것이다.", source: "조쉬 빌링스, 연희부동산" },
+      { text: "외로움은 좋은 것도 나쁜 것도 아니며, 자기에 대한 열렬한 그리고 영원한 자각의 지점, 전적으로 새로운 감수성과 새로운 자각을 시작시키고 그리하여 그 사람을 그 자신의 존재에 접하게 하고 근본적인 의미에서 다른 사람들과 접하게 만드는 결과를 가져오는 어떤 시작이라는 것을 나는 차츰 알게 되었다.", source: "클라크 E. 무스테이커스, 외로움" },
+      { text: "생존하는 일로 계속 바쁘게 지내라. 나무를 본받아라. 되찾기 위해서 잃는 법을 배우라. 그리고 어떤 것도 오래도록 똑같은 것으로 남아 있지는 않다는 것을 명심하라. 아픔마저도, 심리적 아픔마저도, 그것을 인내하라. 그 모든 것을 지나가게 하라. 가버리게 하라.", source: "메이 사튼, 혼자 산다는 것" },
+      { text: "고독을 관계로 채우려 하지 말아야 합니다. 많은 사람들을 만나며 빈 스케줄을 채울 수는 있지만 마음을 채울 수는 없습니다. 스스로를 온전히 받아들이고 제 힘으로 살 수 있어야 마음 속의 공허를 채울 힘도 생길 것입니다.", source: "점신, 오늘의 연애운" },
+      { text: "멍: 아픔에 대한 몸의 기억. 그러나 역설적으로 “다친 부위는 아름다움에 가까워진다. 노랑, 초록, 파랑, 보라. 절반 이상이 무지개와 같은 색으로 이루어져 있기 때문이다.”*", source: "프로파간다 편집부, 바디 북 <br> * 김소연, 한 글자 사전" },
+      { text: "눈물닦으면 다 에피소드", source: "영혼의 노숙자 슬로건"},
+      { text: "인간은 평생을 통해 누군가가 되는 것이 아니라 자기 자신이 되는 것이다.", source: "히가시혼간지, 교토"},
+      { text: "cat bless you", source: ""},
+      { text: "입은 말을 적게 하고 마음은 생각을 적게 하라.", source: ""}
+    ];
+
+    let lastIndex = -1;
+    let isTransitioning = false;
+    let isStarted = false;
+    const textElement = document.getElementById('quote-text');
+    const sourceElement = document.getElementById('quote-source');
+
+function nextQuote() {
+      if (isTransitioning) return;
+      isTransitioning = true;
+
+      textElement.classList.remove('show');
+      sourceElement.classList.remove('show');
+
+      setTimeout(() => {
+        let randomIndex;
+        do {
+          randomIndex = Math.floor(Math.random() * quotes.length);
+        } while (randomIndex === lastIndex && quotes.length > 1);
+        
+        lastIndex = randomIndex;
+        const randomQuote = quotes[randomIndex];
+
+        const contentLength = randomQuote.text.length;
+        
+        if (window.innerWidth > 600) {
+          if (contentLength > 100) {
+            textElement.style.fontSize = "55px";
+          } else if (contentLength > 50) {
+            textElement.style.fontSize = "65px";
+          } else {
+            textElement.style.fontSize = "75px";
+          }
+        }
+
+        if (contentLength > 80) {
+          textElement.style.lineHeight = "1.6";
+        } else {
+          textElement.style.lineHeight = "1.4";
+        }
+
+        // ★ 따옴표 그룹핑 로직 (줄바꿈 방지 포함)
+        let finalOutput = randomQuote.text
+          .replace(/(“)(\S)/g, '<span style="white-space: nowrap;"><span class="custom-q">$1</span>$2</span>')
+          .replace(/(\S)(”)/g, '<span style="white-space: nowrap;">$1<span class="custom-q">$2</span></span>');
+
+        textElement.innerHTML = finalOutput; 
+        sourceElement.innerHTML = randomQuote.source;
+
+        window.scrollTo(0, 0);
+
+        setTimeout(() => {
+          textElement.classList.add('show');
+          sourceElement.classList.add('show');
+          isTransitioning = false;
+        }, 150); 
+
+      }, 500); 
+    }
+
+    function startApp() {
+      if (isStarted) return;
+      isStarted = true;
+      document.body.classList.add('font-active');
+      nextQuote();
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(startApp, 1000); 
+    });
+  </script>
+</body>
+</html>
