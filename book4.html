@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>@lessspicy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script>
+    (function(d) {
+      var config = { kitId: 'eer4nif', scriptTimeout: 3000, async: true },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+  </script>
+
+  <style>
+    /* 1. 공통 스타일 및 폰트 최적화 */
+    body {
+      font-family: "jttgattaeeonangirin", sans-serif;
+      font-weight: 100;
+      background-color: #4f413c;
+      margin: 0;
+      padding: 40px;
+      padding-top: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* 2. 제목 및 텍스트 두께 그룹핑 (Thin 유지) */
+    h1, h2, h3, .card p {
+      font-weight: 100 !important;
+      font-style: normal;
+      word-break: keep-all;
+    }
+
+    h1 {
+      font-size: 100px; /* ★ PC 기준 100px 반영 */
+      text-align: center;
+      color: #f9a8db;
+      margin: 0 auto;
+      max-width: 600px;
+      padding-top: 70px; 
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: 30px;
+      text-align: center;
+      color: #ffffff;
+      margin: 0 auto;
+      max-width: 600px;
+      padding-top: 10px; 
+      padding-bottom: 50px;
+    }
+
+    /* 3. 핀터레스트 Masonry 레이아웃 설정 유지 */
+    .container {
+      margin: 0 auto;
+    }
+
+    .card {
+      display: block;
+      width: 300px;
+      margin-bottom: 20px;
+      background-color: white;
+      border-radius: 2px;
+      padding: 20px 20px 10px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      text-decoration: none;
+    }
+
+    .card.bold { background-color: #f9a8db; }
+
+    .card p {
+      color: #4f413c;
+      font-size: 30px;
+      letter-spacing: -0.02em;
+      line-height: 1.5;
+      margin: 0 0 25px 0;
+    }
+
+    .card h3 {
+      color: #4f413c;
+      font-size: 15px;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin: 0 0 10px 0;
+    }
+
+    /* 4. 모바일 최적화 (600px 이하) */
+    @media (max-width: 600px) {
+      body { padding: 15px; }
+      h1 { font-size: 20vw; padding-top: 40px; }
+      h2 { font-size: 7vw; }
+      .card { width: 100%; margin-bottom: 15px; }
+      .container { width: 100% !important; }
+    }
+  </style>
+</head>
+<body>
+   <h1>자발적 고독</h1>
+   <h2>올리비에 르모</h2>
+
+   <div class="container">
+     <div class="card bold">
+       <p>작업 중...</p>
+     </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+   <script>
+      window.onload = function() {
+        var grid = document.querySelector('.container');
+        var msnry = new Masonry(grid, {
+          itemSelector: '.card',
+          columnWidth: 300,
+          gutter: 20,
+          fitWidth: true
+        });
+        setTimeout(function() { msnry.layout(); }, 300);
+        setTimeout(function() { msnry.layout(); }, 1000);
+      };
+   </script>
+</body>
+</html>
