@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+  <title>HANHARIM</title> 
+  <link rel="icon" href="image/icon2.png"> 
+  <script>
+    /* Adobe Typekit 폰트 로드 */
+    (function(d) {
+      var config = { kitId: 'eer4nif', scriptTimeout: 3000, async: true },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+  </script>
+
+  <style>
+    :root {
+      --color-bg: #000;
+      --color-text: #fd7db5;
+      --color-divider: #fd7db5;
+      --ls-hero: 0.05em;
+      --lh-hero: 0.9;
+      --gap-col: 4vw;
+      --gap-row: 5vw;
+      --side-pad: 5vw;
+      --header-top: 50px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      text-align: center;
+    }
+
+    body.panel-open { overflow: hidden; }
+
+    /* ── Header ── */
+    .header-sticky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding-top: var(--header-top);
+      z-index: 400;
+      pointer-events: none;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-title {
+      font-family: "duckie", sans-serif;
+      font-weight: 400;
+      font-size: clamp(24px, 9vw, 90px);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-hero);
+      line-height: var(--lh-hero);
+      pointer-events: auto;
+      padding: 0 5vw;
+      white-space: nowrap;
+    }
+    .hero-title a { color: inherit; text-decoration: none; }
+
+    /* ── Scaffold ── */
+    .page-wrapper {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding-top: calc(var(--header-top) + clamp(24px, 9vw, 90px) * 0.9 + 25px);
+    }
+
+    .main-col {
+      width: 100%;
+      transition: opacity 0.4s ease;
+    }
+    body.panel-open .main-col { opacity: 0; pointer-events: none; }
+
+    .content-area { 
+      flex: 1; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      width: 100%; 
+      margin-top: 50px;
+    }
+
+    /* ── Grid ── */
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: var(--gap-col);
+      row-gap: var(--gap-row);
+      width: calc(100% - var(--side-pad) * 2);
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: end;
+    }
+
+    .book-item { display: flex; justify-content: center; align-items: flex-end; width: 100%; cursor: pointer; }
+    .book-item img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.35s cubic-bezier(0.34,1.4,0.64,1);
+    }
+    .book-item:hover img { transform: scale(1.04); }
+
+    /* ── Side Panel ── */
+    .side-panel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: var(--color-bg);
+      z-index: 300;
+      overflow-y: auto;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    body.panel-open .side-panel { opacity: 1; visibility: visible; }
+
+    .side-panel-inner {
+      padding: calc(var(--header-top) + clamp(24px, 9vw, 90px) * 0.9 + 90px) 10% 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .panel-close {
+      position: fixed;
+      top: var(--header-top);
+      right: 5vw;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      z-index: 500;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    body.panel-open .panel-close { opacity: 0.8; }
+
+    .panel-book-img { width: 100%; max-width: 400px; height: auto; margin-bottom: 50px; }
+
+    /* ── 구분선 및 여백 조절 ── */
+    .panel-divider { 
+      width: 100%; 
+      height: 1px; 
+      background: var(--color-divider); 
+      opacity: 1; 
+      margin-top: 40px; 
+      margin-bottom: 0px; 
+    }
+
+    .panel-section { width: 100%; text-align: left; }
+    
+    .panel-label { 
+      font-family: "minsans", sans-serif; 
+      font-size: 0.65rem; 
+      letter-spacing: 0.14em; 
+      text-transform: uppercase; 
+      opacity: 1.0; 
+      margin-top: 0px; 
+      margin-bottom: 15px; 
+    }
+
+    .panel-title-text { 
+      font-family: "minsans", sans-serif; 
+      font-size: 2.2rem; 
+      font-weight: 500;
+      line-height: 1.1; 
+      margin-top: 10px; 
+    }
+    
+    .panel-meta, .panel-desc, .panel-author { 
+      font-family: "minsans", sans-serif; 
+      font-size: 0.95rem; 
+      font-weight: 400; 
+      line-height: 1.7; 
+      opacity: 0.8; 
+      text-align: left; 
+      word-break: keep-all; 
+      white-space: pre-line; 
+    }
+
+    .panel-desc b, .panel-author b {
+      font-weight: 700;
+      opacity: 1;
+    }
+
+    .mobile-back-btn {
+      display: none;
+      cursor: pointer;
+      margin-top: 90px;
+      margin-bottom: -40px;
+      opacity: 0.6;
+      width: 32px;
+      height: 32px;
+    }
+
+    .footer-title { padding: 100px 20px 80px; width: 100%; text-align: center; }
+    .footer-info { 
+      font-family: "mogra", sans-serif;
+      font-size: 1.5rem; 
+      line-height: 1.4; 
+      display: inline-block; 
+    }
+    .footer-info a { color: inherit; text-decoration: none; }
+    .gap-nh { margin-right: 0.1em; }
+
+    /* ── 반응형 ── */
+    @media (max-width: 1100px) {
+      .book-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      :root { --header-top: 30px; --gap-row: 13vw; }
+      .hero-title { font-size: 10.5vw; }
+      .page-wrapper { padding-top: calc(var(--header-top) + 9vw + 20px); }
+      .book-grid { grid-template-columns: 1fr; width: 85%; }
+      .footer-info { font-size: 1.1rem; }
+      .panel-close { display: none !important; }
+      .mobile-back-btn { display: flex; align-items: center; justify-content: center; }
+      .side-panel-inner { padding-top: 130px; } 
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header-sticky">
+    <h1 class="hero-title">
+      <a href="https://lessspicy.o-r.kr/">HA<span class="gap-nh">N</span>HARIM</a>
+    </h1>
+  </header>
+
+  <button class="panel-close" id="panelClose">
+    <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="1.5" y1="1.5" x2="20.5" y2="20.5" stroke="#fd7db5" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="20.5" y1="1.5" x2="1.5" y2="20.5" stroke="#fd7db5" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <div class="side-panel" id="sidePanel">
+    <div class="side-panel-inner">
+      <img class="panel-book-img" id="panelImg" src="" alt="cover">
+      
+      <div class="panel-divider"></div>
+      <div class="panel-section">
+        <div class="panel-title-text" id="panelTitle"></div>
+      </div>
+
+      <div class="panel-divider"></div>
+      <div class="panel-section">
+        <div class="panel-label"></div>
+        <div class="panel-meta" id="panelMeta"></div>
+      </div>
+
+      <div class="panel-divider"></div>
+      <div class="panel-section">
+        <div class="panel-label"></div>
+        <div class="panel-desc" id="panelDesc"></div>
+      </div>
+
+      <div class="panel-divider"></div>
+      <div class="panel-section">
+        <div class="panel-label"></div>
+        <div class="panel-author" id="panelAuthor"></div>
+      </div>
+
+      <div class="mobile-back-btn" onclick="closePanel()">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28">
+          <line x1="1.5" y1="1.5" x2="20.5" y2="20.5" stroke="#fd7db5" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="20.5" y1="1.5" x2="1.5" y2="20.5" stroke="#fd7db5" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-wrapper">
+    <div class="main-col">
+      <main class="content-area">
+        <div class="book-grid" id="bookGrid">
+          <div class="book-item" data-src="image/cover0002.jpg" data-title="시부에 추사이" data-meta="<b>모리 오가이 지음, 전정은 옮김, 역사공간&#10;352쪽 | 152x210x22mm" data-desc="<b>일본 근대 역사전기의 새로운 경지를 개척한, 모리 오가이의 최고 걸작</b>&#10;모리 오가이는 나쓰메 소세키(夏目漱石)와 함께 일컬어지는 근대 일본의 대문호로, 군의 관료라는 주업과 병행하여 번역, 창작, 평론 등 장르를 불문하고 문학 활동을 지속하여 많은 업적을 남긴 작가다. 오가이는 「무희」, 「기러기」, 「아베 일족」, 「다카세부네」, 「산쇼 대부」 등의 대표작들을 남겼는데, 그중에서도 『시부에 추사이(澁江抽齋)』는 오가이가 생애 말년이자 문학적 성숙기에 해당하는 1916년에 발표한 작품으로, 에도시대 말 활동했던 동명의 실존 인물을 다룬 장편 역사전기물이다." data-author="<b>모리 오가이</b>&#10;본명은 모리 린타로(森林太?)로, 근대 일본의 대표적인 계몽기 지식인이자 근대 문학의 선각자다.&#10;&#10;<b>전정은</b>&#10;이화여자대학교 사범대학에서 역사교육을 전공하고 일본 교토대학 대학원 문학연구과에서 일본 사상사 전공으로 박사 학위를 받았다. 현재 성신여자대학교 교양교육대학 교수로 재직 중이다. 옮긴 책으로 『일본의 대외 관계사』, 『고지키』 등이 있다."><img src="image/cover0002.jpg"></div>
+          <div class="book-item" data-src="image/cover0003.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0003.jpg"></div>
+          <div class="book-item" data-src="image/cover0004.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0004.jpg"></div>
+          
+          <div class="book-item" data-src="image/cover0018.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0018.jpg"></div>
+          <div class="book-item" data-src="image/cover0016.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0016.jpg"></div>
+          <div class="book-item" data-src="image/cover0007.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0007.jpg"></div>
+          
+          <div class="book-item" data-src="image/cover0005.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0005.jpg"></div>
+          <div class="book-item" data-src="image/cover0006.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0006.jpg"></div>
+          <div class="book-item" data-src="image/cover0008.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0008.jpg"></div>
+          
+          <div class="book-item" data-src="image/cover0021.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0021.jpg"></div>
+          <div class="book-item" data-src="image/cover0022.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0022.jpg"></div>
+          <div class="book-item" data-src="image/cover0023.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0023.jpg"></div>
+          
+          <div class="book-item" data-src="image/cover0019.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0019.jpg"></div>
+          <div class="book-item" data-src="image/cover0020.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0020.jpg"></div>
+          <div class="book-item" data-src="image/cover0009.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0009.jpg"></div>
+          
+          <div class="book-item" data-src="image/cover0010.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0010.jpg"></div>
+          <div class="book-item" data-src="image/cover0011.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0011.jpg"></div>
+          <div class="book-item" data-src="image/cover0013.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0013.jpg"></div>
+          
+          <div class="book-item" data-src="image/cover0024.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0024.jpg"></div>
+          <div class="book-item" data-src="image/cover0012.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0012.jpg"></div>
+          <div class="book-item" data-src="image/cover0017.jpg" data-title="책 제목" data-meta="출판사 · 연도 · 판형" data-desc="책에 대한 설명을 여기에 입력하세요." data-author="저자에 대한 소개를 여기에 입력하세요."><img src="image/cover0017.jpg"></div>
+        </div>
+      </main>
+
+      <footer class="footer-title">
+        <div class="footer-info">
+          Book Designer<br>
+          rimhahan@gmail.com<br>
+          <a href="https://www.instagram.com/lessspicy/" target="_blank">@lessspicy</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    const bookItems = document.querySelectorAll('.book-item');
+    const sidePanel = document.getElementById('sidePanel');
+    const panelClose = document.getElementById('panelClose');
+    const panelImg = document.getElementById('panelImg');
+    const panelTitle = document.getElementById('panelTitle');
+    const panelMeta = document.getElementById('panelMeta');
+    const panelDesc = document.getElementById('panelDesc');
+    const panelAuthor = document.getElementById('panelAuthor');
+
+    function openPanel(item) {
+      panelImg.src = item.dataset.src;
+      panelTitle.innerHTML = item.dataset.title;
+      panelMeta.innerHTML = item.dataset.meta;
+      panelDesc.innerHTML = item.dataset.desc;
+      panelAuthor.innerHTML = item.dataset.author;
+      document.body.classList.add('panel-open');
+      sidePanel.scrollTo(0, 0);
+    }
+
+    function closePanel() {
+      document.body.classList.remove('panel-open');
+    }
+
+    bookItems.forEach(item => item.addEventListener('click', () => openPanel(item)));
+    panelClose.addEventListener('click', closePanel);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+  </script>
+</body>
+</html>
