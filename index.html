@@ -495,6 +495,15 @@ grid-area: 1 / 1;
     } /* @media 닫는 괄호 */
       .m-br + .text-spacer { display: block; margin-top: -1.2em; }
   
+/* 기본(PC)에서 모바일용 숨김 */
+.mobile-only { display: none; }
+
+/* 모바일에서 PC용 숨기고 모바일용 보이기 */
+@media (max-width: 600px) {
+  .pc-only { display: none; }
+  .mobile-only { display: inline-block; }
+}
+
   </style>
 </head>
 <body class="main-active">
@@ -502,7 +511,10 @@ grid-area: 1 / 1;
   <header class="header-sticky">
 <h1 class="hero-title">
   <a href="https://rimha.o-r.kr/">
-    <span>R</span><span>I</span>M</span><span>H</span><span>A</span>
+    <!-- PC용 -->
+    <span class="pc-only">R</span><span class="pc-only">I</span><span class="pc-only">M</span><span class="pc-only">H</span><span class="pc-only">A</span><span class="pc-only">H</span><span class="pc-only">A</span><span class="pc-only">N</span>
+    <!-- 모바일용 -->
+    <span class="mobile-only">R</span><span class="mobile-only">I</span><span class="mobile-only">M</span><span class="mobile-only">H</span><span class="mobile-only">A</span>
   </a>
 </h1>
   </header>
