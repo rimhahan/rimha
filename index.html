@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rimha</title>
+  <link rel="icon" href="images/icon.png">
+  <style>
+    @font-face {
+      font-family: 'Party LET';
+      src: url('fonts/PartyLET.woff2') format('woff2'),
+           url('fonts/PartyLET.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: block;
+    }
+
+    :root {
+      --bg-start: #ff6fa8;
+      --bg-end:   #ffc3dd;
+      --text:     #111111;
+      --glow-a:   #ffffff;
+      --glow-b:   #ff2f8e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 40%, var(--bg-start), var(--bg-end));
+      overflow: hidden;
+    }
+
+    .stage {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background-image: url('images/ggg.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .stage::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 111, 168, 0.35);
+    }
+
+    .name-link {
+      position: relative;
+      z-index: 1;
+      font-family: 'Party LET', cursive, sans-serif;
+      font-size: clamp(8rem, 40vw, 32rem);
+      line-height: 1;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      user-select: none;
+      cursor: pointer;
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+      transition: text-shadow 0.4s ease, transform 0.4s ease;
+    }
+
+    .name-link:hover,
+    .name-link:focus-visible {
+      transform: scale(1.03);
+      text-shadow:
+        0 0 20px var(--glow-a),
+        0 0 45px var(--glow-b),
+        0 0 90px var(--glow-b);
+    }
+
+    .name-link:focus-visible {
+      outline: 2px dashed var(--text);
+      outline-offset: 12px;
+      border-radius: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .name-link { transition: none; }
+      .name-link:hover, .name-link:focus-visible { transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="stage">
+    <a class="name-link" href="https://instagram.com/rimhahan">rimha</a>
+  </main>
+
+  <script>
+    window.addEventListener('load', () => {
+      if (window.location.search) {
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    });
+  </script>
+
+</body>
+</html>
