@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>rimha</title>
-  <link rel="icon" type="image/png" href="/images/icon.png?v=10">
-  <link rel="shortcut icon" type="image/png" href="/images/icon.png?v=10">
-  <link rel="apple-touch-icon" href="/images/icon.png?v=10">
+  <link rel="icon" type="image/png" href="/images/icon.png?v=12">
+  <link rel="shortcut icon" type="image/png" href="/images/icon.png?v=12">
+  <link rel="apple-touch-icon" href="/images/icon.png?v=12">
   <style>
     @font-face {
       font-family: 'Party LET';
@@ -18,8 +18,8 @@
     }
 
     :root {
-      /* 🎨 바탕색을 여기서 쉽게 변경하세요! (색상 코드 입력) */
-      --bg: #ff8fc7;
+      /* 🎨 바탕색 필요시 여기서 변경 */
+      --bg: #ffffff;
       --text: #111111;
       --hover-text: #ffffff;
     }
@@ -42,7 +42,6 @@
     .stage {
       height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 24px;
@@ -52,19 +51,12 @@
       position: relative;
     }
 
-    /* 이름과 정보들을 감싸는 컨테이너 */
-    .content-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+    /* 1. 중앙 메인 이름 (여기에만 호버 효과 적용) */
+    .name-link {
       position: relative;
       z-index: 1;
-    }
-
-    .name-link {
       font-family: 'Party LET', cursive, sans-serif;
-      font-size: clamp(6rem, 30vw, 24rem);
+      font-size: clamp(8rem, 40vw, 32rem);
       line-height: 1;
       color: var(--text);
       text-decoration: none;
@@ -79,44 +71,45 @@
       color: var(--hover-text);
     }
 
-    /* 이름 아래에 들어가는 정보 스타일 (동일 폰트, 대문자) */
-    .info-box {
-      margin-top: 1.5rem;
-      font-family: 'Party LET', cursive, sans-serif;
-      font-size: clamp(1.2rem, 3vw, 2rem);
-      color: var(--text);
-      line-height: 1.6;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      user-select: none;
-      transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* 전체 영역에 마우스를 올렸을 때 아래 정보들까지 같이 하얗게 반전되도록 처리 (원하시면 개별 제어로 바꿀 수 있어요) */
-    .content-wrapper:hover .info-box {
-      color: var(--hover-text);
-    }
-
     .name-link:focus-visible {
       outline: 2px dashed var(--text);
       outline-offset: 12px;
     }
 
+    /* 2. 하단 고정 정보 (효과 없이 항상 기본 색상 유지) */
+    .footer-info {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      text-align: center;
+      font-family: 'Party LET', cursive, sans-serif;
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      color: var(--text);
+      line-height: 1.5;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      user-select: none;
+      pointer-events: none;
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      .name-link, .info-box { transition: none; }
+      .name-link { transition: none; }
     }
   </style>
 </head>
 <body>
 
   <main class="stage">
-    <div class="content-wrapper">
-      <a class="name-link" href="https://instagram.com/rimhahan">rimha</a>
-      <div class="info-box">
-        EDITORIAL&BOOKDESIGN<br>
-        RIMHAHANQGMAIL.COM<br>
-        +82 10 6219 5727
-      </div>
+    <!-- 중앙 메인 이름 (마우스 올리면 흰색으로 변경) -->
+    <a class="name-link" href="https://instagram.com/rimhahan">rimha</a>
+
+    <!-- 하단 고정 정보 (변화 없음) -->
+    <div class="footer-info">
+      EDITORIAL&BOOKDESIGNER<br>
+      RIMHAHANQGMAIL.COM<br>
+      +82 10 6219 5727
     </div>
   </main>
 
