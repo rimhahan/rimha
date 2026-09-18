@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>rimha</title>
-  <link rel="icon" type="image/png" href="/images/icon.png?v=4">
-  <link rel="shortcut icon" type="image/png" href="/images/icon.png?v=4">
-  <link rel="apple-touch-icon" href="/images/icon.png?v=4">
+  <link rel="icon" type="image/png" href="/images/icon.png?v=5">
+  <link rel="shortcut icon" type="image/png" href="/images/icon.png?v=5">
+  <link rel="apple-touch-icon" href="/images/icon.png?v=5">
   <style>
     @font-face {
       font-family: 'Party LET';
@@ -19,6 +19,8 @@
 
     :root {
       --text:     #111111;
+      --invert-text: #ffffff;
+      --hover-bg: #111111;
     }
 
     * {
@@ -31,8 +33,9 @@
       height: 100%;
     }
 
+    /* 배경색을 완전히 없애고 순수한 기본 배경으로 설정 */
     body {
-      background: radial-gradient(circle at 50% 40%, var(--bg-start), var(--bg-end));
+      background: #ffffff;
       overflow: hidden;
     }
 
@@ -42,17 +45,7 @@
       align-items: center;
       justify-content: center;
       padding: 24px;
-      background-image: url('images/ggg.jpg');
-      background-size: cover;
-      background-position: center;
       position: relative;
-    }
-
-    .stage::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(255, 111, 168, 0.35);
     }
 
     .name-link {
@@ -66,29 +59,27 @@
       letter-spacing: 0.02em;
       user-select: none;
       cursor: pointer;
-      /* 기본 상태의 차분한 그림자 (종이가 살짝 떠 있는 느낌) */
-      text-shadow: 2px 6px 16px rgba(0, 0, 0, 0.15);
-      transform: translateY(0);
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
-                  text-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 0.1em 0.2em;
+      border-radius: 8px;
+      /* 부드러운 색상 전환 효과 */
+      transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                  background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* 마우스를 올렸을 때 위로 미세하게 떠오르며 깊이감 있는 그림자 부여 */
+    /* 마우스를 올렸을 때: 배경은 진하게 채워지고 글자는 하얀색으로 반전 */
     .name-link:hover,
     .name-link:focus-visible {
-      transform: translateY(-8px);
-      text-shadow: 4px 14px 30px rgba(0, 0, 0, 0.25);
+      color: var(--invert-text);
+      background-color: var(--hover-bg);
     }
 
     .name-link:focus-visible {
       outline: 2px dashed var(--text);
       outline-offset: 12px;
-      border-radius: 4px;
     }
 
     @media (prefers-reduced-motion: reduce) {
       .name-link { transition: none; }
-      .name-link:hover, .name-link:focus-visible { transform: none; }
     }
   </style>
 </head>
