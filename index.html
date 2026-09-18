@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>rimha</title>
-  <link rel="icon" type="image/png" href="/images/icon.png?v=8">
-  <link rel="shortcut icon" type="image/png" href="/images/icon.png?v=8">
-  <link rel="apple-touch-icon" href="/images/icon.png?v=8">
+  <link rel="icon" type="image/png" href="/images/icon.png?v=9">
+  <link rel="shortcut icon" type="image/png" href="/images/icon.png?v=9">
+  <link rel="apple-touch-icon" href="/images/icon.png?v=9">
   <style>
     @font-face {
       font-family: 'Party LET';
@@ -38,14 +38,11 @@
       align-items: center;
       justify-content: center;
       padding: 24px;
-      /* 배경 이미지만 깔끔하게 유지 */
       background-image: url('images/ggg.jpg');
       background-size: cover;
       background-position: center;
       position: relative;
     }
-
-    /* 오버레이 코드는 완전히 삭제함! */
 
     .name-link {
       position: relative;
@@ -53,16 +50,14 @@
       font-family: 'Party LET', cursive, sans-serif;
       font-size: clamp(8rem, 40vw, 32rem);
       line-height: 1;
-      color: #111111; /* 평소 검은색 글자 */
+      color: #111111;
       text-decoration: none;
       letter-spacing: 0.02em;
       user-select: none;
       cursor: pointer;
-      /* 오직 글자 색상만 부드럽게 변하도록 설정 */
       transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* 마우스를 올렸을 때 글자 색상만 흰색으로 변경 */
     .name-link:hover,
     .name-link:focus-visible {
       color: #ffffff;
