@@ -4,21 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>rimha</title>
-  <link rel="icon" href="images/icon2.png">
+  <link rel="icon" href="./images/icon2.png">
   <style>
     @font-face {
       font-family: 'Party LET';
-      src: url('fonts/PartyLET.woff2') format('woff2'),
-           url('fonts/PartyLET.woff') format('woff');
+      src: url('./fonts/PartyLET.woff2') format('woff2'),
+           url('./fonts/PartyLET.woff') format('woff');
       font-weight: normal;
       font-style: normal;
-      font-display: swap;
+      font-display: swap; /* 폰트 로딩 중 기본 폰트로 먼저 텍스트를 보여주어 안 뜨는 현상 방지 */
     }
 
     :root {
+      /* 배경 그라데이션은 그대로 유지하되, 원하시는 경우 수정 가능합니다 */
       --bg-start: #ff6fa8;
       --bg-end:   #ffc3dd;
-      --text:     #fff6fa;
+      --text:     #111111; /* 글자 색상을 검정색으로 변경 */
       --glow-a:   #ffffff;
       --glow-b:   #ff2f8e;
     }
@@ -44,7 +45,8 @@
       align-items: center;
       justify-content: center;
       padding: 24px;
-      background-image: url('images/background.jpg');
+      /* 배경 이미지 경로 명확화 (만약 이미지가 없다면 배경색만 나옵니다) */
+      background-image: url('./images/background.jpg');
       background-size: cover;
       background-position: center;
       position: relative;
@@ -60,8 +62,9 @@
     .name-link {
       position: relative;
       z-index: 1;
-      font-family: 'Party LET', cursive;
-      font-size: clamp(6rem, 30vw, 25rem);
+      /* 브라우저에 폰트가 없을 때를 대비해 cursive(흘림체) 기본 폰트 추가 */
+      font-family: 'Party LET', cursive, sans-serif;
+      font-size: clamp(8rem, 40vw, 32rem);
       line-height: 1;
       color: var(--text);
       text-decoration: none;
