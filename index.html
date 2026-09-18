@@ -4,12 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>rimha</title>
-  <link rel="icon" href="images/icon.png">
+  <link rel="icon" type="image/png" href="/images/icon.png?v=4">
+  <link rel="shortcut icon" type="image/png" href="/images/icon.png?v=4">
+  <link rel="apple-touch-icon" href="/images/icon.png?v=4">
   <style>
     @font-face {
       font-family: 'Party LET';
-      src: url('fonts/PartyLET.woff2') format('woff2'),
-           url('fonts/PartyLET.woff') format('woff');
+      src: url('./fonts/PartyLET.woff2') format('woff2'),
+           url('./fonts/PartyLET.woff') format('woff');
       font-weight: normal;
       font-style: normal;
       font-display: block;
@@ -17,7 +19,6 @@
 
     :root {
       --text:     #111111;
-      --glow:   #ffffff;
     }
 
     * {
@@ -65,17 +66,18 @@
       letter-spacing: 0.02em;
       user-select: none;
       cursor: pointer;
-      text-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
-      transition: text-shadow 0.4s ease, transform 0.4s ease;
+      /* 기본 상태의 차분한 그림자 (종이가 살짝 떠 있는 느낌) */
+      text-shadow: 2px 6px 16px rgba(0, 0, 0, 0.15);
+      transform: translateY(0);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                  text-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
+    /* 마우스를 올렸을 때 위로 미세하게 떠오르며 깊이감 있는 그림자 부여 */
     .name-link:hover,
     .name-link:focus-visible {
-      transform: scale(1.03);
-      text-shadow:
-        0 0 20px var(--glow-a),
-        0 0 45px var(--glow-b),
-        0 0 90px var(--glow-b);
+      transform: translateY(-8px);
+      text-shadow: 4px 14px 30px rgba(0, 0, 0, 0.25);
     }
 
     .name-link:focus-visible {
