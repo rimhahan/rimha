@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>rimha</title>
-  <link rel="icon" type="image/png" href="/images/icon.png?v=9">
-  <link rel="shortcut icon" type="image/png" href="/images/icon.png?v=9">
-  <link rel="apple-touch-icon" href="/images/icon.png?v=9">
+  <link rel="icon" type="image/png" href="/images/icon.png?v=10">
+  <link rel="shortcut icon" type="image/png" href="/images/icon.png?v=10">
+  <link rel="apple-touch-icon" href="/images/icon.png?v=10">
   <style>
     @font-face {
       font-family: 'Party LET';
@@ -15,6 +15,13 @@
       font-weight: normal;
       font-style: normal;
       font-display: block;
+    }
+
+    :root {
+      /* 🎨 바탕색을 여기서 쉽게 변경하세요! (색상 코드 입력) */
+      --bg: #ff8fc7;
+      --text: #111111;
+      --hover-text: #ffffff;
     }
 
     * {
@@ -28,13 +35,14 @@
     }
 
     body {
-      background: #ffffff;
+      background: var(--bg);
       overflow: hidden;
     }
 
     .stage {
       height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 24px;
@@ -44,13 +52,21 @@
       position: relative;
     }
 
-    .name-link {
+    /* 이름과 정보들을 감싸는 컨테이너 */
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
       position: relative;
       z-index: 1;
+    }
+
+    .name-link {
       font-family: 'Party LET', cursive, sans-serif;
-      font-size: clamp(8rem, 40vw, 32rem);
+      font-size: clamp(6rem, 30vw, 24rem);
       line-height: 1;
-      color: #111111;
+      color: var(--text);
       text-decoration: none;
       letter-spacing: 0.02em;
       user-select: none;
@@ -60,23 +76,48 @@
 
     .name-link:hover,
     .name-link:focus-visible {
-      color: #ffffff;
+      color: var(--hover-text);
+    }
+
+    /* 이름 아래에 들어가는 정보 스타일 (동일 폰트, 대문자) */
+    .info-box {
+      margin-top: 1.5rem;
+      font-family: 'Party LET', cursive, sans-serif;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      color: var(--text);
+      line-height: 1.6;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      user-select: none;
+      transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* 전체 영역에 마우스를 올렸을 때 아래 정보들까지 같이 하얗게 반전되도록 처리 (원하시면 개별 제어로 바꿀 수 있어요) */
+    .content-wrapper:hover .info-box {
+      color: var(--hover-text);
     }
 
     .name-link:focus-visible {
-      outline: 2px dashed #111111;
+      outline: 2px dashed var(--text);
       outline-offset: 12px;
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .name-link { transition: none; }
+      .name-link, .info-box { transition: none; }
     }
   </style>
 </head>
 <body>
 
   <main class="stage">
-    <a class="name-link" href="https://instagram.com/rimhahan">rimha</a>
+    <div class="content-wrapper">
+      <a class="name-link" href="https://instagram.com/rimhahan">rimha</a>
+      <div class="info-box">
+        EDITORIAL&BOOKDESIGN<br>
+        RIMHAHANQGMAIL.COM<br>
+        +82 10 6219 5727
+      </div>
+    </div>
   </main>
 
   <script>
