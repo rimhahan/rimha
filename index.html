@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>rimha</title>
-  <link rel="icon" type="image/png" href="/images/icon.png?v=5">
-  <link rel="shortcut icon" type="image/png" href="/images/icon.png?v=5">
-  <link rel="apple-touch-icon" href="/images/icon.png?v=5">
+  <link rel="icon" type="image/png" href="/images/icon.png?v=8">
+  <link rel="shortcut icon" type="image/png" href="/images/icon.png?v=8">
+  <link rel="apple-touch-icon" href="/images/icon.png?v=8">
   <style>
     @font-face {
       font-family: 'Party LET';
@@ -15,12 +15,6 @@
       font-weight: normal;
       font-style: normal;
       font-display: block;
-    }
-
-    :root {
-      --text:     #111111;
-      --invert-text: #ffffff;
-      --hover-bg: #111111;
     }
 
     * {
@@ -33,7 +27,6 @@
       height: 100%;
     }
 
-    /* 배경색을 완전히 없애고 순수한 기본 배경으로 설정 */
     body {
       background: #ffffff;
       overflow: hidden;
@@ -45,8 +38,14 @@
       align-items: center;
       justify-content: center;
       padding: 24px;
+      /* 배경 이미지만 깔끔하게 유지 */
+      background-image: url('images/ggg.jpg');
+      background-size: cover;
+      background-position: center;
       position: relative;
     }
+
+    /* 오버레이 코드는 완전히 삭제함! */
 
     .name-link {
       position: relative;
@@ -54,27 +53,23 @@
       font-family: 'Party LET', cursive, sans-serif;
       font-size: clamp(8rem, 40vw, 32rem);
       line-height: 1;
-      color: var(--text);
+      color: #111111; /* 평소 검은색 글자 */
       text-decoration: none;
       letter-spacing: 0.02em;
       user-select: none;
       cursor: pointer;
-      padding: 0.1em 0.2em;
-      border-radius: 8px;
-      /* 부드러운 색상 전환 효과 */
-      transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
-                  background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      /* 오직 글자 색상만 부드럽게 변하도록 설정 */
+      transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* 마우스를 올렸을 때: 배경은 진하게 채워지고 글자는 하얀색으로 반전 */
+    /* 마우스를 올렸을 때 글자 색상만 흰색으로 변경 */
     .name-link:hover,
     .name-link:focus-visible {
-      color: var(--invert-text);
-      background-color: var(--hover-bg);
+      color: #ffffff;
     }
 
     .name-link:focus-visible {
-      outline: 2px dashed var(--text);
+      outline: 2px dashed #111111;
       outline-offset: 12px;
     }
 
