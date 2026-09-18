@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>rimha</title>
-  <!-- 개인 도메인 기준 최상단 루트 경로 적용 -->
-  <link rel="icon" href="/images/icon.png">
+  <!-- 파비콘 아이콘 경로 -->
+  <link rel="icon" href="/rimhahan/images/icon.png">
   <style>
     @font-face {
       font-family: 'Party LET';
@@ -19,7 +19,7 @@
     :root {
       --bg-start: #ff6fa8;
       --bg-end:   #ffc3dd;
-      --text:     #111111; /* 검정색 */
+      --text:     #111111;
       --glow-a:   #ffffff;
       --glow-b:   #ff2f8e;
     }
@@ -45,8 +45,8 @@
       align-items: center;
       justify-content: center;
       padding: 24px;
-      /* 개인 도메인 기준 최상단 루트 경로 적용 */
-      background-image: url('/images/ggg.jpg');
+      /* 배경 이미지 경로 */
+      background-image: url('/rimhahan/images/ggg.jpg');
       background-size: cover;
       background-position: center;
       position: relative;
@@ -102,7 +102,6 @@
   </main>
 
   <script>
-    // 화면이 완전히 그려진 뒤에 URL의 파라미터(군더더기)를 깔끔하게 지웁니다.
     window.addEventListener('load', () => {
       if (window.location.search) {
         window.history.replaceState({}, document.title, window.location.pathname);
