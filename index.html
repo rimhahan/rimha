@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rimha</title>
+  <style>
+    /* ---------- 폰트 ---------- */
+    @font-face {
+      font-family: 'Party LET';
+      src: url('fonts/PartyLET.woff2') format('woff2'),
+           url('fonts/PartyLET.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ---------- 색상 & 기본값 ---------- */
+    :root {
+      --bg-start: #ff6fa8;
+      --bg-end:   #ffc3dd;
+      --text:     #fff6fa;
+      --glow-a:   #ffffff;
+      --glow-b:   #ff2f8e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 40%, var(--bg-start), var(--bg-end));
+      overflow: hidden;
+    }
+
+    /* ---------- 중앙 정렬 무대 ---------- */
+    .stage {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+
+      /* 배경 이미지: 쓰고 싶지 않으면 아래 3줄을 지우세요 */
+      background-image: url('images/my-photo.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    /* 이미지 위에 살짝 핑크 톤을 깔아 글자 가독성 확보 (이미지 안 쓰면 이 블록 전체 삭제 가능) */
+    .stage::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 111, 168, 0.35);
+    }
+
+    /* ---------- 이름 ---------- */
+    .name-link {
+      position: relative;
+      z-index: 1;
+      font-family: 'Party LET', cursive;
+      font-size: clamp(4rem, 18vw, 13rem);
+      line-height: 1;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      user-select: none;
+      cursor: pointer;
+
+      text-shadow:
+        0 0 12px rgba(255, 255, 255, 0.25);
+
+      transition: text-shadow 0.4s ease, transform 0.4s ease;
+    }
+
+    .name-link:hover,
+    .name-link:focus-visible {
+      transform: scale(1.03);
+      text-shadow:
+        0 0 20px var(--glow-a),
+        0 0 45px var(--glow-b),
+        0 0 90px var(--glow-b);
+    }
+
+    .name-link:focus-visible {
+      outline: 2px dashed var(--text);
+      outline-offset: 12px;
+      border-radius: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .name-link {
+        transition: none;
+      }
+      .name-link:hover,
+      .name-link:focus-visible {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="stage">
+    
+      class="name-link"
+      href="https://www.instagram.com/lessspicy"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="rimha의 인스타그램으로 이동"
+    >rimha</a>
+  </main>
+
+</body>
+</html>
